@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>chiaki4xbox: PS5 Remote Play on Xbox</title>
+<meta name="description" content="PlayStation 5 Remote Play for Xbox Series X|S Dev Mode, built on chiaki-ng.">
+<style>
+  :root { --bg:#121417; --card:#1c1f24; --line:#2a2e35; --text:#e8eaed; --dim:#9aa0a6; --accent:#00a7ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 "Segoe UI", system-ui, sans-serif; }
+  a { color:var(--accent); }
+  .wrap { max-width:900px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 48px; text-align:center; border-bottom:1px solid var(--line);
+           background:radial-gradient(ellipse at top, rgba(0,167,255,.18), transparent 60%); }
+  header img { width:220px; max-width:60%; }
+  h1 { font-size:44px; margin:16px 0 4px; letter-spacing:-.5px; }
+  h1 span { color:var(--accent); }
+  .tag { color:var(--dim); font-size:19px; margin:0 0 28px; }
+  .btn { display:inline-block; padding:12px 22px; border-radius:8px; text-decoration:none; font-weight:600; margin:4px; }
+  .primary { background:var(--accent); color:#00111c; }
+  .ghost { border:1px solid var(--line); color:var(--text); }
+  section { padding:44px 0; border-bottom:1px solid var(--line); }
+  h2 { font-size:26px; margin:0 0 18px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 20px; }
+  .card b { display:block; margin-bottom:4px; }
+  .card p { margin:0; color:var(--dim); font-size:15px; }
+  table { width:100%; border-collapse:collapse; background:var(--card); border-radius:10px; overflow:hidden; }
+  td { padding:12px 16px; border-top:1px solid var(--line); }
+  tr:first-child td { border-top:0; }
+  kbd { background:#2a2e35; border:1px solid #3a3f47; border-radius:5px; padding:2px 7px; font:13px/1.4 ui-monospace, monospace; }
+  ol li { margin-bottom:8px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; overflow:auto; font-size:14px; }
+  footer { padding:32px 0 48px; color:var(--dim); font-size:14px; text-align:center; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <img src="logo.png" alt="chiaki logo">
+    <h1>chiaki<span>4xbox</span></h1>
+    <p class="tag">Play your PS5 on your Xbox Series X|S. Remote Play in Dev Mode, built on chiaki-ng.</p>
+    <a class="btn primary" href="https://github.com/Valevixi/chiaki4xbox/tree/main/xbox">Get the source</a>
+    <a class="btn ghost" href="https://github.com/Valevixi/chiaki4xbox/releases">Releases</a>
+  </div>
+</header>
+
+<section><div class="wrap">
+  <h2>Features</h2>
+  <div class="grid">
+    <div class="card"><b>1080p · 60 fps</b><p>Hardware HEVC/H.264 decoding with a low-latency swap chain.</p></div>
+    <div class="card"><b>Picture filters</b><p>Detail restore, deband, sharpening and color boost, run on the GPU.</p></div>
+    <div class="card"><b>Frame generation</b><p>Optional motion-interpolated 30 → 60 fps.</p></div>
+    <div class="card"><b>Multiple profiles</b><p>Add PSN accounts in the app with the on-screen keyboard.</p></div>
+    <div class="card"><b>chiaki-ng UI</b><p>Familiar dark interface, console list and help screen.</p></div>
+    <div class="card"><b>Rumble</b><p>Controller vibration passes through from the PS5.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Controls while streaming</h2>
+  <table>
+    <tr><td>Hold <kbd>Menu</kbd> + <kbd>D-pad ↑</kbd></td><td>Settings menu</td></tr>
+    <tr><td>Hold <kbd>Menu</kbd> + <kbd>D-pad ↓</kbd></td><td>PS button</td></tr>
+    <tr><td>Tap <kbd>Menu</kbd></td><td>Options</td></tr>
+    <tr><td><kbd>View</kbd></td><td>Touchpad</td></tr>
+  </table>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Setup</h2>
+  <ol>
+    <li>Put your Xbox in <b>Dev Mode</b> and turn on the <b>Device Portal</b>.</li>
+    <li>Install the <code>.msix</code> from Device Portal → <i>Add</i>.</li>
+    <li>In the app, press <b>+ Add Profile</b> and enter a name plus the base64 <b>PSN account ID</b> signed in on the PS5.</li>
+    <li>Set your PS5's IP with the <b>IP</b> button.</li>
+    <li>On the PS5, go to <i>Settings → System → Remote Play → Link Device</i> and enter the PIN in the app.</li>
+  </ol>
+  <h2 style="margin-top:32px">Build it yourself</h2>
+  <pre>cd xbox
+powershell -ExecutionPolicy Bypass -File make-cert.ps1
+build.bat</pre>
+  <p style="color:var(--dim)">Needs Visual Studio 2026 (C++ desktop + UWP), CMake and Git. The package ends up in <code>xbox\AppPackages\</code>.</p>
+</div></section>
+
+<footer><div class="wrap">
+  chiaki4xbox is a fork of <a href="https://github.com/streetpea/chiaki-ng">chiaki-ng</a>, licensed AGPL-3.0.
+  Not affiliated with Sony or Microsoft.
+</div></footer>
+</body>
+</html>
