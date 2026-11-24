@@ -1,0 +1,9 @@
+{
+  "name": "chiaki-xbox",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "openssl",
+    "opus"
+  ],
+  "builtin-baseline": "277978ad2eddc3b05ecf288dcd33071968cd2f79"
+}

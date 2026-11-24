@@ -1,0 +1,7 @@
+build/
+AppPackages/
+vcpkg/
+vcpkg_installed/
+build_output.txt
+*.pfx
+*.cer
