@@ -724,7 +724,7 @@ static ChiakiErrorCode ctrl_message_send(ChiakiCtrl *ctrl, uint16_t type, const 
 	if(ctrl->session->rudp)
 	{
 		uint8_t buf_size = 8 + payload_size;
-		uint8_t buf[buf_size];
+		uint8_t *buf = (uint8_t *)_alloca(buf_size);
 		memcpy(buf, header, 8);
 		if(enc)
 			memcpy(buf + 8, enc, payload_size);
@@ -1224,7 +1224,7 @@ static ChiakiErrorCode ctrl_connect(ChiakiCtrl *ctrl)
 			goto error;
 		}
 		size_t init_response_size = message.data_size - 8;
-		uint8_t init_response[init_response_size];
+		uint8_t *init_response = (uint8_t *)_alloca(init_response_size);
 		memcpy(init_response, message.data + 8, init_response_size);
 		chiaki_rudp_message_pointers_free(&message);
 		err = chiaki_rudp_send_recv(session->rudp, &message, init_response, init_response_size, 0, COOKIE_REQUEST, COOKIE_RESPONSE, 2, 3);
